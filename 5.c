@@ -17,25 +17,36 @@ int main() {
     printf("Enter elements of Matrix A:\n");
     for(i = 0; i < rows; i++) {
         for(j = 0; j < cols; j++) {
-            scanf("%d", &A[i][j]);        }    }
+            scanf("%d", &A[i][j]);
+        }
+    }
+
     printf("Enter elements of Matrix B:\n");
     for(i = 0; i < rows; i++) {
         for(j = 0; j < cols; j++) {
-            scanf("%d", &B[i][j]);        }    }
+            scanf("%d", &B[i][j]);
+        }
+    }
     for(i = 0; i < rows; i++) {
         for(j = 0; j < cols; j++) {
             sum[i][j] = A[i][j] + B[i][j];
-            sub[i][j] = A[i][j] - B[i][j];        }    }
+            sub[i][j] = A[i][j] - B[i][j];
+        }
+    }
     printf("\nMatrix Addition:\n");
     for(i = 0; i < rows; i++) {
         for(j = 0; j < cols; j++) {
-            printf("%d ", sum[i][j]);        }
-        printf("\n");    }
+            printf("%d ", sum[i][j]);
+        }
+        printf("\n");
+    }
     printf("\nMatrix Subtraction:\n");
     for(i = 0; i < rows; i++) {
         for(j = 0; j < cols; j++) {
-            printf("%d ", sub[i][j]);        }
-        printf("\n");    }
+            printf("%d ", sub[i][j]);
+        }
+        printf("\n");
+    }
     for(i = 0; i < rows; i++) {
         free(A[i]);
         free(B[i]);

@@ -1,20 +1,33 @@
-#include <stdio.h> 
+#include<stdio.h>
+#include<stdlib.h>
 
-int main()
-{
-    int i, count = 0;
-    int num = 19;
+int main(){
+    int *arr;
+    int n,r;
 
-    for(i = 1; i <= num; i++) {
-      if(num % i == 0) 
-        count += 1;
-    } 
-            if(num == 0 || num == 1)
-         printf("%d is not prime", num); 
-       else if(count > 2) 
-          printf("%d is not prime", num);
-       else
-         printf("%d is prime", num);
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
 
-  return 0;
+   
+    arr = (int *)malloc(n * sizeof(int));
+
+    if(arr == NULL){
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    printf("Enter elements:\n");
+    for(r = 0; r < n; r++){
+        scanf("%d",&arr[r]);
+    }
+
+    printf("Array elements are:\n");
+    for(r = 0; r < n; r++){
+        printf("%d ",arr[r]);
+    }
+
+    free(arr);
+    printf("\nMemory freed successfully.\n");
+
+    return 0;
 }
