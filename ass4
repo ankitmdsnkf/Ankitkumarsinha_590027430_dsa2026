@@ -1,0 +1,276 @@
+//1 
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX], top = -1;
+
+void push(int x) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
+    else {
+        stack[++top] = x;
+        printf("%d pushed\n", x);
+    }
+}
+
+void pop() {
+    if (top == -1)
+        printf("Stack Underflow\n");
+    else
+        printf("%d popped\n", stack[top--]);
+}
+
+void display() {
+    if (top == -1)
+        printf("Stack is empty\n");
+    else {
+        for (int i = top; i >= 0; i--)
+            printf("%d ", stack[i]);
+        printf("\n");
+    }
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    display();
+    pop();
+    display();
+
+//2  
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX], top = -1;
+
+void push(int x) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
+    else {
+        stack[++top] = x;
+        printf("%d pushed\n", x);
+    }
+}
+
+void pop() {
+    if (top == -1)
+        printf("Stack Underflow\n");
+    else
+        printf("%d popped\n", stack[top--]);
+}
+
+void display() {
+    if (top == -1)
+        printf("Stack is empty\n");
+    else {
+        for (int i = top; i >= 0; i--)
+            printf("%d ", stack[i]);
+        printf("\n");
+    }
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    display();
+    pop();
+    display();
+    return 0;
+}
+    return 0;
+}
+
+//3
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX], top = -1;
+
+void push(int x) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
+    else {
+        stack[++top] = x;
+        printf("%d pushed\n", x);
+    }
+}
+
+void pop() {
+    if (top == -1)
+        printf("Stack Underflow\n");
+    else
+        printf("%d popped\n", stack[top--]);
+}
+
+void display() {
+    if (top == -1)
+        printf("Stack is empty\n");
+    else {
+        for (int i = top; i >= 0; i--)
+            printf("%d ", stack[i]);
+        printf("\n");
+    }
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    display();
+    pop();
+    display();
+    return 0;
+}
+
+
+
+//4
+
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX], top = -1;
+
+void push(int x) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
+    else {
+        stack[++top] = x;
+        printf("%d pushed\n", x);
+    }
+}
+
+void pop() {
+    if (top == -1)
+        printf("Stack Underflow\n");
+    else
+        printf("%d popped\n", stack[top--]);
+}
+
+void display() {
+    if (top == -1)
+        printf("Stack is empty\n");
+    else {
+        for (int i = top; i >= 0; i--)
+            printf("%d ", stack[i]);
+        printf("\n");
+    }
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    display();
+    pop();
+    display();
+    return 0;
+}
+
+
+
+//5
+#include <stdio.h>
+#include <ctype.h>
+#define SIZE 100
+
+char stack[SIZE];
+int top = -1;
+void push(char x) {
+    stack[++top] = x;
+}
+
+char pop() {
+    return stack[top--];
+}
+
+// Priority function
+int priority(char x) {
+    if (x == '(') return 0;
+    if (x == '+' || x == '-') return 1;
+    if (x == '*' || x == '/') return 2;
+    if (x == '^') return 3;
+    return 0;
+}
+
+int main() {
+    char infix[] = "A+B*(C^D-E)^(F+G*H)-I";
+    char postfix[SIZE];
+    int k = 0;
+
+    for (int i = 0; infix[i] != '\0'; i++) {
+        
+        if (isalnum(infix[i])) {
+            postfix[k++] = infix[i];
+        }
+        else if (infix[i] == '(') {
+            push(infix[i]);
+        }
+        else if (infix[i] == ')') {
+            while (stack[top] != '(') {
+                postfix[k++] = pop();
+            }
+            pop(); 
+        }
+        else {
+            while (priority(stack[top]) >= priority(infix[i])) {
+                postfix[k++] = pop();
+            }
+            push(infix[i]);
+        }
+    }
+    while (top != -1) {
+        postfix[k++] = pop();
+    }
+    postfix[k] = '\0';
+    printf("Postfix Expression: %s\n", postfix);
+    return 0;
+}
+
+//6
+
+#include <stdio.h>
+#define SIZE 100
+
+int stack[SIZE];
+int top = -1;
+
+// Push
+void push(int x) {
+    stack[++top] = x;
+}
+
+// Pop
+int pop() {
+    return stack[top--];
+}
+
+int main() {
+    char postfix[] = "23*54*+9-";
+    int a, b, result;
+
+    for (int i = 0; postfix[i] != '\0'; i++) {
+
+        if (postfix[i] >= '0' && postfix[i] <= '9') {
+            push(postfix[i] - '0'); // convert char to int
+        }
+        else {
+            b = pop();
+            a = pop();
+
+            switch (postfix[i]) {
+                case '+': push(a + b); break;
+                case '-': push(a - b); break;
+                case '*': push(a * b); break;
+                case '/': push(a / b); break;
+            }
+        }
+    }
+
+    result = pop();
+    printf("Result = %d\n", result);
+
+    return 0;
+}
